@@ -42,6 +42,8 @@ var createClass = function () {
 var Emitter = function () {
   function Emitter() {
     classCallCheck(this, Emitter);
+
+    this._events = Object.create(null);
   }
 
   createClass(Emitter, [{
@@ -86,7 +88,7 @@ var Emitter = function () {
         return vm;
       }
       // specific event
-      var cbs = vm.events[event];
+      var cbs = vm._events[event];
       if (!cbs) {
         return vm;
       }

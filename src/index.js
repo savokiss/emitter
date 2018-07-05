@@ -2,6 +2,10 @@ import { toArray } from './utils'
 
 // just the emiter from vue source
 export default class Emitter {
+  constructor () {
+    this._events = Object.create(null)
+  }
+
   $on (event, fn) {
     const vm = this
     if (Array.isArray(event)) {
@@ -40,7 +44,7 @@ export default class Emitter {
       return vm
     }
     // specific event
-    const cbs = vm.events[event]
+    const cbs = vm._events[event]
     if (!cbs) {
       return vm
     }
